@@ -1,62 +1,42 @@
-# ONYX Beta
+# ONYX v1 — Research-first paper trading app
 
-Vercel-ready ONYX beta control centre with mocked research, shadow, live, signal, and trade data.
+This update turns the ONYX UI sandbox into a working paper trading app.
 
-## What this is
+## What changed
 
-This repo gives you a deployable beta for GitHub + Vercel:
-- polished ONYX UI
-- mock API routes under `app/api/*`
-- pages for overview, research, shadow, live, signals, trades, and settings
-- architecture notes for wiring in `hftbacktest`, collectors, and real execution later
+- Set & Forget is treated as a failed/paused edge, not a live strategy.
+- ONYX becomes the parent trading research platform.
+- The app now researches the market using Binance public data.
+- ONYX picks pairs from a defined USDT universe by liquidity, volatility and momentum.
+- Signals are filtered through trend, volatility and structure checks.
+- Paper trades are stored in browser localStorage for quick testing.
+- No exchange API keys are required.
+- No Northflank worker is required for this version.
 
-## What this is not
+## Main files added
 
-This beta does **not** run live HFT execution on Vercel. It is the control-centre layer and a clean beta shell for:
-- signal review
-- backtest summaries
-- shadow/live monitoring
-- deployment demos
-- investor/customer screenshots
+- `components/onyx/paper-trader.tsx`
+- `app/api/market/snapshot/route.ts`
+- `lib/onyx-engine.ts`
+- `lib/onyx-types.ts`
+- `LAUNCH_TASKS.md`
+- `NORTHFLANK_STOP_SET_FORGET.md`
 
-## Local run
+## How pair selection works
 
-```bash
-npm install
-npm run dev
-```
+ONYX scans a configured universe, for example:
 
-## Production build
+`BTCUSDT,ETHUSDT,SOLUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,AVAXUSDT,LINKUSDT,SUIUSDT`
 
-```bash
-npm install
-npm run build
-```
+It ranks pairs by:
 
-## Deploy to Vercel
+- liquidity
+- 24h momentum
+- volatility range
+- whether current candles pass trend / ATR / structure filters
 
-1. Push this repo to GitHub
-2. Import the repo into Vercel
-3. Framework preset: Next.js
-4. Build command: `npm run build`
-5. Output: leave default
+It does not assume BTC, ETH and SOL are always the best trades.
 
-No environment variables are required for the mocked beta.
+## Important
 
-## Suggested next real build steps
-
-- replace mock data in `data/mock.ts` with real API/database reads
-- connect `app/api/*` to Postgres/Timescale
-- move collectors, shadow trading, and execution services off Vercel
-- use this UI as the control plane for those services
-
-## Service plan
-
-The `services/` folder includes deployment notes for:
-- market collector
-- research engine
-- shadow trader
-- live executor
-- risk engine
-
-Those are scaffolds only in this beta.
+This is still paper-only. Do not connect live funds until paper metrics prove a real edge.
