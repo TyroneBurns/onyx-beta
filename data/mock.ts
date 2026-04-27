@@ -236,3 +236,110 @@ export const settingsGroups = [
     ]
   }
 ];
+
+
+// Compatibility exports for older ONYX beta pages/routes that may still exist in the repo.
+// These keep Vercel builds passing while the new paper-trader page becomes the main app.
+
+export const heroStats = kpis;
+
+export const overviewKpis = kpis;
+
+export const latencySeries = [
+  { time: '09:00', latency: 24, p95: 42 },
+  { time: '10:00', latency: 22, p95: 39 },
+  { time: '11:00', latency: 28, p95: 47 },
+  { time: '12:00', latency: 20, p95: 36 },
+  { time: '13:00', latency: 25, p95: 41 },
+  { time: '14:00', latency: 21, p95: 38 }
+];
+
+export const livePositions = [
+  {
+    market: 'BTC/USD',
+    symbol: 'BTCUSD',
+    side: 'Long',
+    entry: '71,240',
+    mark: '71,380',
+    size: '£1,000',
+    pnl: '+£1.96',
+    pnlPct: '+0.20%',
+    status: 'Paper',
+    confidence: 'Research'
+  },
+  {
+    market: 'ETH/USD',
+    symbol: 'ETHUSD',
+    side: 'Long',
+    entry: '2,180',
+    mark: '2,174',
+    size: '£800',
+    pnl: '-£2.20',
+    pnlPct: '-0.28%',
+    status: 'Paper',
+    confidence: 'Research'
+  }
+];
+
+export const liveOrders = [
+  {
+    market: 'BTC/USD',
+    symbol: 'BTCUSD',
+    side: 'Buy',
+    type: 'Paper',
+    price: '71,240',
+    size: '£1,000',
+    status: 'Open',
+    time: '09:14'
+  },
+  {
+    market: 'ETH/USD',
+    symbol: 'ETHUSD',
+    side: 'Sell',
+    type: 'Paper',
+    price: '2,174',
+    size: '£800',
+    status: 'Watch',
+    time: '09:18'
+  }
+];
+
+export const shadowComparisons = [
+  {
+    model: 'Set & Forget HMM',
+    status: 'Retired',
+    live: '-£6.05',
+    shadow: '-£4.91',
+    delta: '-£1.14',
+    note: 'Failed to prove edge; chop dominated.'
+  },
+  {
+    model: 'ONYX Research',
+    status: 'Paper',
+    live: '£0.00',
+    shadow: '£0.00',
+    delta: '£0.00',
+    note: 'Research-first candidate selection now active.'
+  }
+];
+
+export const researchRuns = [
+  {
+    id: 'onyx-scan-001',
+    name: 'USDT universe scan',
+    status: 'Running',
+    result: 'Research mode',
+    startedAt: 'Today',
+    score: 0,
+    notes: 'ONYX ranks liquid movers before allowing paper trades.'
+  },
+  {
+    id: 'saf-001',
+    name: 'Set & Forget HMM 15m',
+    status: 'Failed edge',
+    result: 'Negative expectancy',
+    startedAt: 'Previous test',
+    score: -6.05,
+    notes: 'Chop exits and signal flips dominated results.'
+  }
+];
