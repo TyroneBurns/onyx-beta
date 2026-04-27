@@ -2,17 +2,16 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Activity, BarChart3, CandlestickChart, LayoutDashboard, Radar, RadioTower, Settings2 } from 'lucide-react';
-import { sidebarItems } from '@/data/mock';
+import { Activity, BarChart3, Bot, CandlestickChart, LayoutDashboard, Settings2 } from 'lucide-react';
+import { navItems } from '@/data/mock';
 import { cn } from '@/lib/utils';
 import { OnyxLogo } from '@/components/layout/onyx-logo';
 import { StatusPill } from '@/components/ui/status-pill';
 
 const icons = {
   '/': LayoutDashboard,
-  '/research': BarChart3,
-  '/shadow': Radar,
-  '/live': RadioTower,
+  '/analytics': BarChart3,
+  '/models': Bot,
   '/signals': Activity,
   '/trades': CandlestickChart,
   '/settings': Settings2
@@ -22,15 +21,15 @@ export function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden w-[292px] shrink-0 border-r border-white/6 bg-black/20 px-5 py-6 lg:flex lg:flex-col">
+    <aside className="hidden w-[280px] shrink-0 border-r border-white/6 bg-black/20 px-5 py-6 lg:flex lg:flex-col">
       <OnyxLogo />
 
       <div className="mt-8">
-        <StatusPill label="Beta deploy" tone="positive" />
+        <StatusPill label="Sandbox repo" tone="positive" />
       </div>
 
       <nav className="mt-6 space-y-2">
-        {sidebarItems.map((item) => {
+        {navItems.map((item) => {
           const Icon = icons[item.href as keyof typeof icons] ?? LayoutDashboard;
           const active = pathname === item.href;
           return (
@@ -39,7 +38,9 @@ export function Sidebar() {
               href={item.href}
               className={cn(
                 'group flex items-center justify-between rounded-2xl px-3 py-3 transition-all duration-200',
-                active ? 'bg-white/8 text-white ring-1 ring-white/10' : 'text-slate-400 hover:bg-white/4 hover:text-white'
+                active
+                  ? 'bg-white/8 text-white ring-1 ring-white/10'
+                  : 'text-slate-400 hover:bg-white/4 hover:text-white'
               )}
             >
               <span className="flex items-center gap-3">
@@ -55,20 +56,13 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-auto rounded-[24px] border border-white/8 bg-white/4 p-4">
-        <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Deployment</p>
-        <div className="mt-3 space-y-3 text-sm">
-          <div className="flex items-center justify-between text-slate-300">
-            <span>UI</span>
-            <span className="text-emerald-300">Vercel-ready</span>
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500">Live environment</p>
+        <div className="mt-3 flex items-center justify-between">
+          <div>
+            <p className="text-sm font-medium text-white">Production shadow</p>
+            <p className="mt-1 text-xs text-slate-400">UI rebuild isolated from core logic</p>
           </div>
-          <div className="flex items-center justify-between text-slate-300">
-            <span>API</span>
-            <span className="text-cyan-300">Mock routes</span>
-          </div>
-          <div className="flex items-center justify-between text-slate-300">
-            <span>Execution</span>
-            <span className="text-amber-300">Scaffolded</span>
-          </div>
+          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400 shadow-glow" />
         </div>
       </div>
     </aside>

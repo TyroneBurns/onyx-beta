@@ -1,42 +1,28 @@
-# ONYX v1 — Research-first paper trading app
+# ONYX v1.1 — Paper Trader API/UI Fix
 
-This update turns the ONYX UI sandbox into a working paper trading app.
+This patch keeps ONYX as a research-first paper trading app, but fixes the first deploy issues:
 
-## What changed
+- Binance `451` errors are now handled by falling back to Coinbase Exchange public market data.
+- The large green hero overlay has been removed and replaced with subtle ONYX-style cyan/emerald glow.
+- Market scan copy now says public market data instead of Binance-only.
+- No live exchange keys are required.
+- No Northflank worker is required for this ONYX paper version.
 
-- Set & Forget is treated as a failed/paused edge, not a live strategy.
-- ONYX becomes the parent trading research platform.
-- The app now researches the market using Binance public data.
-- ONYX picks pairs from a defined USDT universe by liquidity, volatility and momentum.
-- Signals are filtered through trend, volatility and structure checks.
-- Paper trades are stored in browser localStorage for quick testing.
-- No exchange API keys are required.
-- No Northflank worker is required for this version.
+## Stop Set & Forget Northflank
 
-## Main files added
+Pause or delete the old Set & Forget Northflank job so it stops eating API credits:
 
-- `components/onyx/paper-trader.tsx`
-- `app/api/market/snapshot/route.ts`
-- `lib/onyx-engine.ts`
-- `lib/onyx-types.ts`
-- `LAUNCH_TASKS.md`
-- `NORTHFLANK_STOP_SET_FORGET.md`
+1. Northflank → Set-Forget project
+2. Jobs
+3. Select the cron/worker job
+4. Disable schedule or pause/delete the job
+5. Remove old API keys from runtime variables if no longer needed
 
-## How pair selection works
+## Launch tasks
 
-ONYX scans a configured universe, for example:
-
-`BTCUSDT,ETHUSDT,SOLUSDT,BNBUSDT,XRPUSDT,ADAUSDT,DOGEUSDT,AVAXUSDT,LINKUSDT,SUIUSDT`
-
-It ranks pairs by:
-
-- liquidity
-- 24h momentum
-- volatility range
-- whether current candles pass trend / ATR / structure filters
-
-It does not assume BTC, ETH and SOL are always the best trades.
-
-## Important
-
-This is still paper-only. Do not connect live funds until paper metrics prove a real edge.
+1. Push this patch to `onyx-beta`
+2. Redeploy Vercel
+3. Open ONYX
+4. Press **Research now**
+5. Confirm the error card is gone and researched pairs load
+6. Keep auto paper OFF until you confirm scans work cleanly

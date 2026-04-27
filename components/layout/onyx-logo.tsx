@@ -1,14 +1,12 @@
 export function OnyxLogo() {
   return (
-    <div>
-      <div className="flex items-center gap-3">
-        <div className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-500/90 text-slate-950 shadow-glow">
-          <span className="text-lg font-semibold tracking-[-0.05em]">O</span>
-        </div>
-        <div>
-          <p className="text-xs uppercase tracking-[0.22em] text-emerald-300">ONYX</p>
-          <p className="mt-1 text-sm text-slate-400">Research → Shadow → Live</p>
-        </div>
+    <div className="flex items-center gap-3">
+      <div className="relative flex h-10 w-10 items-center justify-center rounded-2xl border border-emerald-400/20 bg-[radial-gradient(circle_at_30%_30%,rgba(34,197,94,0.35),rgba(34,197,94,0.08)_35%,rgba(15,23,34,1)_70%)] shadow-glow">
+        <div className="h-4 w-4 rotate-45 rounded-[4px] border border-emerald-300/70 bg-emerald-400/25" />
+      </div>
+      <div>
+        <p className="text-[11px] uppercase tracking-[0.24em] text-slate-500">Algorithmic control</p>
+        <h1 className="text-sm font-semibold tracking-[0.24em] text-white">ONYX</h1>
       </div>
     </div>
   );

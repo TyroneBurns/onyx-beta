@@ -247,7 +247,7 @@ export function OnyxPaperTrader() {
               <p className="text-xs uppercase tracking-[0.32em] text-cyan-200/70">ONYX paper engine</p>
               <h2 className="mt-2 text-2xl font-semibold text-white">Research → rank → paper trade</h2>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-                ONYX now researches a defined crypto universe using public Binance market data, ranks liquid movers, filters for trend / volatility / structure, then paper-trades only if the signal passes your guardrails. Keep it paper only until expectancy and profit factor prove themselves.
+                ONYX now researches a defined crypto universe using public market data, ranks liquid movers, filters for trend / volatility / structure, then paper-trades only if the signal passes your guardrails. Keep it paper only until expectancy and profit factor prove themselves.
               </p>
             </div>
             <div className="flex flex-wrap gap-2">
@@ -257,7 +257,7 @@ export function OnyxPaperTrader() {
               </Button>
             </div>
           </div>
-          {error ? <div className="mt-4 rounded-2xl border border-red-400/25 bg-red-500/10 p-3 text-sm text-red-200">{error}</div> : null}
+          {error ? <div className="mt-4 rounded-2xl border border-red-400/25 bg-red-500/10 p-3 text-sm text-red-200"><strong>Market fetch issue:</strong> {error}</div> : null}
           <div className="mt-5 grid gap-3 md:grid-cols-3">
             {snapshot?.notes.map((note) => (
               <div key={note} className="rounded-2xl border border-white/8 bg-white/[0.03] p-4 text-sm leading-6 text-slate-300">{note}</div>

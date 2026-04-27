@@ -3,16 +3,22 @@
 @tailwind utilities;
 
 :root {
-  --background: 7 34% 5%;
-  --foreground: 210 33% 97%;
+  --background: 216 40% 4%;
+  --foreground: 210 29% 96%;
   --panel: 217 39% 11%;
   --elevated: 217 37% 15%;
-  --border: 214 18% 23%;
+  --border: 214 20% 22%;
+  --accent: 142 72% 45%;
+  --muted: 217 21% 59%;
+  --danger: 0 84% 60%;
+  --warning: 38 92% 50%;
+  --info: 188 94% 53%;
+  --violet: 255 91% 76%;
 }
 
 * {
+  border-color: hsl(var(--border));
   box-sizing: border-box;
-  border-color: rgba(255,255,255,0.08);
 }
 
 html {
@@ -26,9 +32,9 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    radial-gradient(circle at top left, rgba(34, 197, 94, 0.10), transparent 24%),
-    radial-gradient(circle at top right, rgba(34, 211, 238, 0.07), transparent 18%),
-    linear-gradient(180deg, #070B11 0%, #09111C 100%);
+    radial-gradient(circle at top left, rgba(45, 212, 191, 0.045), transparent 24%),
+    radial-gradient(circle at top right, rgba(34, 211, 238, 0.045), transparent 22%),
+    linear-gradient(180deg, #070b11 0%, #0a1019 100%);
   color: hsl(var(--foreground));
 }
 
@@ -39,7 +45,7 @@ canvas {
 }
 
 ::selection {
-  background: rgba(34, 197, 94, 0.25);
+  background: rgba(45, 212, 191, 0.22);
 }
 
 @layer base {
@@ -52,13 +58,13 @@ canvas {
 }
 
 @layer utilities {
+  .panel-mask {
+    mask-image: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.85));
+  }
+
   .overflow-safe {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-  }
-
-  .text-balance {
-    text-wrap: balance;
   }
 }
