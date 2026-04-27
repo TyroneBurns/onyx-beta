@@ -237,109 +237,172 @@ export const settingsGroups = [
   }
 ];
 
-
 // Compatibility exports for older ONYX beta pages/routes that may still exist in the repo.
-// These keep Vercel builds passing while the new paper-trader page becomes the main app.
+// These are intentionally typed as any[] so legacy dashboard components can read their old fields
+// without blocking the new paper-trader build.
 
-export const heroStats = kpis;
+export const heroStats: any[] = kpis as any[];
 
-export const overviewKpis = kpis;
+export const overviewKpis: any[] = kpis as any[];
 
-export const latencySeries = [
-  { time: '09:00', latency: 24, p95: 42 },
-  { time: '10:00', latency: 22, p95: 39 },
-  { time: '11:00', latency: 28, p95: 47 },
-  { time: '12:00', latency: 20, p95: 36 },
-  { time: '13:00', latency: 25, p95: 41 },
-  { time: '14:00', latency: 21, p95: 38 }
+export const latencySeries: any[] = [
+  { time: '09:00', latency: 24, p95: 42, value: 24, label: '09:00' },
+  { time: '10:00', latency: 22, p95: 39, value: 22, label: '10:00' },
+  { time: '11:00', latency: 28, p95: 47, value: 28, label: '11:00' },
+  { time: '12:00', latency: 20, p95: 36, value: 20, label: '12:00' },
+  { time: '13:00', latency: 25, p95: 41, value: 25, label: '13:00' },
+  { time: '14:00', latency: 21, p95: 38, value: 21, label: '14:00' }
 ];
 
-export const livePositions = [
+export const livePositions: any[] = [
   {
+    id: 'paper-btc',
+    symbol: 'BTC/USD',
     market: 'BTC/USD',
-    symbol: 'BTCUSD',
+    pair: 'BTC/USD',
     side: 'Long',
+    direction: 'Long',
     entry: '71,240',
+    entryPrice: '71,240',
     mark: '71,380',
+    markPrice: '71,380',
+    price: '71,380',
     size: '£1,000',
+    allocation: '£1,000',
     pnl: '+£1.96',
     pnlPct: '+0.20%',
+    return: '+0.20%',
     status: 'Paper',
-    confidence: 'Research'
+    confidence: 'Research',
+    strategy: 'ONYX Research'
   },
   {
+    id: 'paper-eth',
+    symbol: 'ETH/USD',
     market: 'ETH/USD',
-    symbol: 'ETHUSD',
+    pair: 'ETH/USD',
     side: 'Long',
+    direction: 'Long',
     entry: '2,180',
+    entryPrice: '2,180',
     mark: '2,174',
-    size: '£800',
-    pnl: '-£2.20',
-    pnlPct: '-0.28%',
-    status: 'Paper',
-    confidence: 'Research'
-  }
-];
-
-export const liveOrders = [
-  {
-    market: 'BTC/USD',
-    symbol: 'BTCUSD',
-    side: 'Buy',
-    type: 'Paper',
-    price: '71,240',
-    size: '£1,000',
-    status: 'Open',
-    time: '09:14'
-  },
-  {
-    market: 'ETH/USD',
-    symbol: 'ETHUSD',
-    side: 'Sell',
-    type: 'Paper',
+    markPrice: '2,174',
     price: '2,174',
     size: '£800',
-    status: 'Watch',
-    time: '09:18'
+    allocation: '£800',
+    pnl: '-£2.20',
+    pnlPct: '-0.28%',
+    return: '-0.28%',
+    status: 'Paper',
+    confidence: 'Research',
+    strategy: 'ONYX Research'
   }
 ];
 
-export const shadowComparisons = [
+export const liveOrders: any[] = [
   {
+    id: 'order-btc',
+    symbol: 'BTC/USD',
+    market: 'BTC/USD',
+    pair: 'BTC/USD',
+    side: 'Buy',
+    direction: 'Buy',
+    type: 'Paper',
+    orderType: 'Paper',
+    price: '71,240',
+    size: '£1,000',
+    allocation: '£1,000',
+    status: 'Open',
+    time: '09:14',
+    createdAt: '09:14'
+  },
+  {
+    id: 'order-eth',
+    symbol: 'ETH/USD',
+    market: 'ETH/USD',
+    pair: 'ETH/USD',
+    side: 'Sell',
+    direction: 'Sell',
+    type: 'Paper',
+    orderType: 'Paper',
+    price: '2,174',
+    size: '£800',
+    allocation: '£800',
+    status: 'Watch',
+    time: '09:18',
+    createdAt: '09:18'
+  }
+];
+
+export const shadowComparisons: any[] = [
+  {
+    id: 'saf-001',
+    symbol: 'Set & Forget HMM',
+    market: 'Set & Forget HMM',
     model: 'Set & Forget HMM',
+    strategy: 'HMM 15m crypto regime',
     status: 'Retired',
     live: '-£6.05',
     shadow: '-£4.91',
+    livePnl: '-£6.05',
+    shadowPnl: '-£4.91',
     delta: '-£1.14',
-    note: 'Failed to prove edge; chop dominated.'
+    discrepancy: '-£1.14',
+    drift: '-18.8%',
+    severity: 'High',
+    note: 'Failed to prove edge; chop dominated.',
+    reason: 'Chop exits and signal flips dominated results.'
   },
   {
+    id: 'onyx-001',
+    symbol: 'ONYX Research',
+    market: 'ONYX Research',
     model: 'ONYX Research',
+    strategy: 'Research-first paper trader',
     status: 'Paper',
     live: '£0.00',
     shadow: '£0.00',
+    livePnl: '£0.00',
+    shadowPnl: '£0.00',
     delta: '£0.00',
-    note: 'Research-first candidate selection now active.'
+    discrepancy: '£0.00',
+    drift: '0.0%',
+    severity: 'Low',
+    note: 'Research-first candidate selection now active.',
+    reason: 'Market scan ranks pairs before paper entries.'
   }
 ];
 
-export const researchRuns = [
+export const researchRuns: any[] = [
   {
     id: 'onyx-scan-001',
     name: 'USDT universe scan',
+    title: 'USDT universe scan',
+    model: 'ONYX Research',
     status: 'Running',
     result: 'Research mode',
     startedAt: 'Today',
+    updatedAt: 'Now',
+    duration: 'live',
     score: 0,
-    notes: 'ONYX ranks liquid movers before allowing paper trades.'
+    confidence: 'Paper',
+    notes: 'ONYX ranks liquid movers before allowing paper trades.',
+    summary: 'Research-first candidate selection.'
   },
   {
     id: 'saf-001',
     name: 'Set & Forget HMM 15m',
+    title: 'Set & Forget HMM 15m',
+    model: 'HMM Regime Trader',
     status: 'Failed edge',
     result: 'Negative expectancy',
     startedAt: 'Previous test',
+    updatedAt: 'Retired',
+    duration: 'multi-day',
     score: -6.05,
-    notes: 'Chop exits and signal flips dominated results.'
+    confidence: 'Failed',
+    notes: 'Chop exits and signal flips dominated results.',
+    summary: 'Not live-ready.'
   }
 ];
+

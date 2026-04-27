@@ -1,16 +1,12 @@
-# ONYX v1.2 build fix
+# ONYX v1.3 build fix
 
-This patch fixes the Vercel build failure caused by older ONYX beta files still importing mock exports that were missing from `data/mock.ts`.
+Fixes the second Vercel build issue where older beta dashboard components expected fields like
+`shadowComparisons[].symbol`.
 
-Vercel error fixed:
-- `livePositions` missing
-- `liveOrders` missing
-- `shadowComparisons` missing
-- `heroStats` missing
-- `overviewKpis` missing
-- `researchRuns` missing
-- `latencySeries` missing
+The compatibility exports in `data/mock.ts` are now typed as `any[]` and include broad legacy
+fields so old pages/routes no longer block the new ONYX paper-trader build.
 
-It also keeps the previous v1.1 fixes:
+Also includes previous fixes:
 - Binance 451 fallback to Coinbase public market data
-- mobile hero overlay removed
+- mobile hero overlay fix
+- missing mock exports fix

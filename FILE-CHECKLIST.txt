@@ -1,9 +1,9 @@
 Included files:
 - data/mock.ts
+- BUILD_FIX_NOTES.md
 - app/api/market/snapshot/route.ts
 - components/layout/topbar.tsx
 - components/onyx/paper-trader.tsx
 - app/globals.css
 - README.md
 - LAUNCH_TASKS.md
-- BUILD_FIX_NOTES.md
