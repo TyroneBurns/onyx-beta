@@ -5,7 +5,7 @@ export default function OverviewPage() {
   return (
     <AppShell
       title="ONYX Paper Trader"
-      subtitle="Research-first paper trading platform. Set & Forget is retired to paper research only."
+      subtitle="Autonomous research-first paper trading app. Researches every 5 minutes, learns from paper outcomes, and blocks live trading until edge is proven."
     >
       <OnyxPaperTrader />
     </AppShell>

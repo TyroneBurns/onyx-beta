@@ -1,28 +1,51 @@
-# ONYX v1.1 — Paper Trader API/UI Fix
+# ONYX v2 — Autonomous Paper Trader
 
-This patch keeps ONYX as a research-first paper trading app, but fixes the first deploy issues:
+ONYX is now a working paper trading app, not just a UI shell.
 
-- Binance `451` errors are now handled by falling back to Coinbase Exchange public market data.
-- The large green hero overlay has been removed and replaced with subtle ONYX-style cyan/emerald glow.
-- Market scan copy now says public market data instead of Binance-only.
-- No live exchange keys are required.
-- No Northflank worker is required for this ONYX paper version.
+## What changed
 
-## Stop Set & Forget Northflank
+- All main pages now use live ONYX paper state instead of demo data.
+- Home researches markets and opens paper trades.
+- Analytics reads actual paper equity, realised PnL, expectancy and profit factor.
+- Models reads the active research / execution / learning layers.
+- Signals reads real market candidates from the latest scan.
+- Trades reads actual paper positions and trade history.
+- Settings controls real app settings saved to browser localStorage.
 
-Pause or delete the old Set & Forget Northflank job so it stops eating API credits:
+## Autonomy
 
-1. Northflank → Set-Forget project
-2. Jobs
-3. Select the cron/worker job
-4. Disable schedule or pause/delete the job
-5. Remove old API keys from runtime variables if no longer needed
+ONYX now:
 
-## Launch tasks
+- researches public markets automatically every 5 minutes
+- scans a configurable crypto universe
+- selects pairs by liquidity, momentum and volatility
+- applies trend / volatility / structure filters
+- opens paper trades automatically when auto paper is enabled
+- marks positions to market on each scan
+- closes positions on stop loss or take profit
+- learns from recent closed paper trades
+- tightens risk, quality and confidence if expectancy is weak
+- cautiously expands only if paper expectancy and profit factor improve
 
-1. Push this patch to `onyx-beta`
-2. Redeploy Vercel
-3. Open ONYX
-4. Press **Research now**
-5. Confirm the error card is gone and researched pairs load
-6. Keep auto paper OFF until you confirm scans work cleanly
+## Important limitation
+
+This version runs the autonomous loop in the browser while the app is open.
+
+For true 24/7 unattended automation, the next backend step is:
+- persistent database
+- scheduled worker/cron
+- server-side trade engine
+- audit logs
+- live exchange execution adapter
+
+Do not connect real funds until paper results pass the launch gate.
+
+## Real-money gate
+
+Minimum before live:
+- 100+ closed paper trades
+- positive expectancy
+- profit factor > 1.15
+- controlled drawdown
+- no single pair carrying all profit
+- manual approval
